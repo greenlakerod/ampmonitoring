@@ -95,7 +95,9 @@
     <None Include="..\authConfig.json">
       <Link>authConfig.json</Link>
     </None>
-    <None Include="App.config" />
+    <Content Include="Avanade.Amp.Common.dll.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

@@ -69,6 +69,7 @@
     <Compile Include="CommandsPackage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Testing.cs" />
+    <Compile Include="ToolsOptionsPackage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -100,6 +101,7 @@
     <Content Include="Bundle\Trigger\Resources\ExecuteTrigger.png" />
     <Content Include="index.html" />
     <Content Include="Resources\CommandsPackage.ico" />
+    <Content Include="Resources\ToolsOptionsPackage.ico" />
     <Content Include="stylesheet.css" />
   </ItemGroup>
   <ItemGroup>
