@@ -1,0 +1,512 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <!--  This is the file that defines the actual layout and type of the commands.
+        It is divided in different sections (e.g. command definition, command
+        placement, ...), with each defining a specific set of properties.
+        See the comment before each section for more details about how to
+        use it. -->
+
+  <!--  The VSCT compiler (the tool that translates this file into the binary
+        format that VisualStudio will consume) has the ability to run a preprocessor
+        on the vsct file; this preprocessor is (usually) the C++ preprocessor, so
+        it is possible to define includes and macros with the same syntax used
+        in C++ files. Using this ability of the compiler here, we include some files
+        defining some of the constants that we will use inside the file. -->
+
+  <!--This is the file that defines the IDs for all the commands exposed by VisualStudio. -->
+  <Extern href="stdidcmd.h" />
+
+  <!--This header contains the command ids for the menus provided by the shell. -->
+  <Extern href="vsshlids.h" />
+
+  <!--The Commands section is where commands, menus, and menu groups are defined.
+      This section uses a Guid to identify the package that provides the command defined inside it. -->
+  <Commands package="guidCommandsPackage">
+    <!-- Inside this section we have different sub-sections: one for the menus, another
+    for the menu groups, one for the buttons (the actual commands), one for the combos
+    and the last one for the bitmaps used. Each element is identified by a command id that
+    is a unique pair of guid and numeric identifier; the guid part of the identifier is usually
+    called "command set" and is used to group different command inside a logically related
+    group; your package should define its own command set in order to avoid collisions
+    with command ids defined by other packages. -->
+
+    <!--Menus section. -->
+    <Menus>
+      <Menu guid="guidCommandsPackageCmdSet" id="AmpTopLevelMenu" priority="0x700" type="Menu">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_MM_TOOLSADDINS" />
+        <Strings>
+          <ButtonText>AMP</ButtonText>
+          <CommandName>AMP</CommandName>
+        </Strings>
+      </Menu>
+      <!--<Menu guid="guidCommandsPackageCmdSet" id="AmpSettingsMenu" priority="0x0100" type="Menu">
+        <Parent guid="guidCommandsPackageCmdSet" id="AmpTopLevelMenuGroup" />
+        <Strings>
+          <ButtonText>Settings</ButtonText>
+          <CommandName>Settings</CommandName>
+        </Strings>
+      </Menu>-->
+      <Menu guid="guidCommandsPackageCmdSet" id="AmpToolbar" type="Toolbar">
+        <!--<Parent guid="guidCommandsPackageCmdSet" id="0" />-->
+        <!--<Parent guid="guidSHLMainMenu" id="IDG_VS_MM_TOOLSADDINS" />-->
+        <!--<Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS" />-->
+        <!--<CommandFlag>IconAndText</CommandFlag>-->
+        <CommandFlag>AlwaysCreate</CommandFlag>
+        <CommandFlag>DefaultDocked</CommandFlag>
+        <Strings>
+          <ButtonText>AMP</ButtonText>
+          <CommandName>AMP</CommandName>
+        </Strings>
+      </Menu>
+    </Menus>
+
+    <!--Groups section. -->
+    <!-- In this section you can define new menu groups. A menu group is a container for
+         other menus or buttons (commands); from a visual point of view you can see the
+         group as the part of a menu contained between two lines. The parent of a group
+         must be a menu. -->
+    <Groups>
+      <Group guid="guidCommandsPackageCmdSet" id="AmpTopLevelMenuGroup" priority="0x0600">
+        <Parent guid="guidCommandsPackageCmdSet" id="AmpTopLevelMenu" />
+      </Group>
+      <Group guid="guidCommandsPackageCmdSet" id="AmpToolbarGroup" priority="0x0000">
+        <Parent guid="guidCommandsPackageCmdSet" id="AmpToolbar"/>
+      </Group>
+    </Groups>
+
+    <!--Buttons section. -->
+    <!--This section defines the elements the user can interact with, like a menu command or a button
+        or combo box in a toolbar. -->
+    <Buttons>
+      <!--To define a menu group you have to specify its ID, the parent menu and its display priority.
+          The command is visible and enabled by default. If you need to change the visibility, status, etc, you can use
+          the CommandFlag node.
+          You can add more than one CommandFlag node e.g.:
+              <CommandFlag>DefaultInvisible</CommandFlag>
+              <CommandFlag>DynamicVisibility</CommandFlag>
+          If you do not want an image next to your command, remove the Icon node /> -->
+      
+      <!--<Button guid="guidCommandsPackageCmdSet" id="cmdidSelectAccount" priority="0x0100" type="Button">
+        <Parent guid="guidCommandsPackageCmdSet" id="AmpToolbarGroup" />
+        <Icon guid="guidImages" id="bmpPic1" />
+        <Strings>
+          <ButtonText>Select Account</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidCommandsPackageCmdSet" id="cmdidGetAccountList" priority="0x0100" type="Button">
+        <Parent guid="guidCommandsPackageCmdSet" id="AmpToolbarGroup" />
+        <Icon guid="guidImages1" id="bmpPic1" />
+        <Strings>
+          <ButtonText>Get Account List</ButtonText>
+        </Strings>
+      </Button>-->
+      <Button guid="guidCommandsPackageCmdSet" id="cmdidExecutePercolator" priority="0x0100" type="Button">
+        <Parent guid="guidCommandsPackageCmdSet" id="AmpTopLevelMenuGroup" />
+        <Icon guid="guidImages2" id="bmpPic1" />
+        <Strings>
+          <ButtonText>Execute Percolator</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidCommandsPackageCmdSet" id="cmdidCreateProbe" priority="0x0100" type="Button">
+        <Parent guid="guidCommandsPackageCmdSet" id="AmpTopLevelMenuGroup" />
+        <Icon guid="guidImages3" id="bmpPic1" />
+        <Strings>
+          <ButtonText>Create Probe</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidCommandsPackageCmdSet" id="cmdidExecuteProbe" priority="0x0100" type="Button">
+        <Parent guid="guidCommandsPackageCmdSet" id="AmpTopLevelMenuGroup" />
+        <Icon guid="guidImages4" id="bmpPic1" />
+        <Strings>
+          <ButtonText>Execute Probe</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidCommandsPackageCmdSet" id="cmdidPercolateProbeResults" priority="0x0100" type="Button">
+        <Parent guid="guidCommandsPackageCmdSet" id="AmpTopLevelMenuGroup" />
+        <Icon guid="guidImages5" id="bmpPic1" />
+        <Strings>
+          <ButtonText>Percolate Probe Results</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidCommandsPackageCmdSet" id="cmdidQueryProbe" priority="0x0100" type="Button">
+        <Parent guid="guidCommandsPackageCmdSet" id="AmpTopLevelMenuGroup" />
+        <Icon guid="guidImages6" id="bmpPic1" />
+        <Strings>
+          <ButtonText>Query Probe</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidCommandsPackageCmdSet" id="cmdidTestProbeFilter" priority="0x0100" type="Button">
+        <Parent guid="guidCommandsPackageCmdSet" id="AmpTopLevelMenuGroup" />
+        <Icon guid="guidImages7" id="bmpPic1" />
+        <Strings>
+          <ButtonText>Test Probe Filters</ButtonText>
+        </Strings>
+      </Button>
+      <!--<Button guid="guidCommandsPackageCmdSet" id="cmdidSelectSite" priority="0x0100" type="Button">
+        <Parent guid="guidCommandsPackageCmdSet" id="AmpToolbarGroup" />
+        <Icon guid="guidImages8" id="bmpPic1" />
+        <Strings>
+          <ButtonText>Select Site</ButtonText>
+        </Strings>
+      </Button>-->
+      <!--<Button guid="guidCommandsPackageCmdSet" id="cmdidGetSiteList" priority="0x0100" type="Button">
+        <Parent guid="guidCommandsPackageCmdSet" id="AmpToolbarGroup" />
+        <Icon guid="guidImages9" id="bmpPic1" />
+        <Strings>
+          <ButtonText>Get Site List</ButtonText>
+        </Strings>
+      </Button>-->
+      <!--<Button guid="guidCommandsPackageCmdSet" id="cmdidSelectTarget" priority="0x0100" type="Button">
+        <Parent guid="guidCommandsPackageCmdSet" id="AmpToolbarGroup" />
+        <Icon guid="guidImages10" id="bmpPic1" />
+        <Strings>
+          <ButtonText>Select Target</ButtonText>
+        </Strings>
+      </Button>-->
+      <!--<Button guid="guidCommandsPackageCmdSet" id="cmdidGetTargetList" priority="0x0100" type="Button">
+        <Parent guid="guidCommandsPackageCmdSet" id="AmpToolbarGroup" />
+        <Icon guid="guidImages11" id="bmpPic1" />
+        <Strings>
+          <ButtonText>Get Target List</ButtonText>
+        </Strings>
+      </Button>-->
+      <Button guid="guidCommandsPackageCmdSet" id="cmdidExecuteTrigger" priority="0x0100" type="Button">
+        <Parent guid="guidCommandsPackageCmdSet" id="AmpTopLevelMenuGroup" />
+        <Icon guid="guidImages12" id="bmpPic1" />
+        <Strings>
+          <ButtonText>Execute Trigger</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidCommandsPackageCmdSet" id="cmdidCreatePercolator" priority="0x0100" type="Button">
+        <Parent guid="guidCommandsPackageCmdSet" id="AmpTopLevelMenuGroup" />
+        <Icon guid="guidImages13" id="bmpPic1" />
+        <Strings>
+          <ButtonText>Create Percolator</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidCommandsPackageCmdSet" id="cmdidCreateTrigger" priority="0x0100" type="Button">
+        <Parent guid="guidCommandsPackageCmdSet" id="AmpTopLevelMenuGroup" />
+        <Icon guid="guidImages14" id="bmpPic1" />
+        <Strings>
+          <ButtonText>Create Trigger</ButtonText>
+        </Strings>
+      </Button>
+    </Buttons>
+
+    <!--Combos section. -->
+    <!-- NOTE: An important thing to know about combos is that if they are placed on a toolbar that is visible, and they are not marked
+                 with the CommandFlag DefaultDisabled the shell will load your package in order to determine the item to display in the
+                 display area (this is because it is done via IOleCommandTarget::Exec, and there is no special case logic to realize the
+                 Exec request is really a 'query' in disguise. This sample has all combos as being enabled out of the box; if the ComboBox 
+                 toolbar is set as visible, your package will be force loaded next time you start Visual Studio. But in general practice you 
+                 need to consider if you want your combos to be enabled (which is the default) and if so if you are fine with your package 
+                 being loaded almost immediately on rendering of the UI.
+      
+            The following types of combo boxes are supported: 
+
+            DropDownCombo 
+              a DropDownCombo does not let the user type into the combo box; they can only pick from the list of
+              items in the drop down. The string value of the element selected is given as a parameter when the 
+              command is executed (which happens automatically when the user chooses an item).
+
+              This type of combo could be used for something like the "Solution Configurations" combo on the "Standard" toolbar. 
+
+            IndexCombo 
+              An IndexCombo is the same as a DropDownCombo in that it is a "pick from the list" only combo. 
+              The difference is an IndexCombo returns the selected value as an index into the list (0 based). 
+
+              This type of combo could be used for something like the "Solution Configurations" combo on the "Standard" toolbar. 
+
+            MRUCombo 
+              An MRUCombo allows the user to type into the edit box. The history of strings entered 
+              is automatically persisted by the IDE on a per-user/per-machine basis.  
+
+              This type of combo could be used for something like the "Find" combo that was on the standard toolbar in previous
+              versions. It has been moved to the overflow area of the standard toolbar on more recent versions as part of the 
+              toolbar reduction effort.
+
+            DynamicCombo 
+              A DynamicCombo allows the user to type into the edit box or pick from the list. The  
+              list of choices is usually fixed and is managed by the command handler for the command.
+
+              This type of combo could be used for something like the "Zoom" combo on the "Class Designer" toolbar.
+
+          The following flags can be applied to Combo boxes: 
+            NoKeyCustomize      (rarely used) 
+            NoButtonCustomize   (rarely used) 
+            NoCustomize         (rarely used) 
+            DefaultInvisible    (often used: Exec is used to fetch info about combos, calling Exec on an unloaded package causes that package to load. If you place a combo on a visible 
+                                 toolbar without setting DefaultInvisible, you will force load your package upon IDE startup) 
+            DefaultDisabled     (often used) 
+            DynamicVisibility   (often used) 
+            CommandWellOnly     (used for commands that may have placements on the main menu for purposes of canonnical name generation but should not be actually created on main menu visually.) 
+            IconAndText         (sometimes used) 
+            FilterKeys          (rarely used ** used to hook window messages on commandbar controls) 
+            StretchHorizontally (only used with combos on Toolwindow toolbars. This tells the shell, when laying out the toolbar, to stretch the combo to fill all horizontal space
+                                 not taken by other controls. This is only honored for the first combo on the toolbar with this flag. An example of a toolbar that uses this is the
+                                 Task List Window's toolbar.) 
+
+          The following strings can be supplied with a command: 
+            Button Text (required) ** displayed as label of the command on a toolbar if IconAndText flag is specified.
+
+            If any of the following optional strings are missing then Button Text is used for their values. 
+
+            Menu Text (optional) ** displayed as label of the command on a menu if IconAndText flag is specified. 
+
+            Tooltip Text (optional) ** displayed when mouse hovers on command.
+
+            Command Well Name (optional) ** displayed as name of command in the Add Command dialog.
+
+            Canonical Name (optional) ** English programmatic name of command used in Command Window and DTE.ExecuteCommand. This name is used in
+                                         place of the ButtonText for purposes of canonical name formation. The value of this tag is appended to the 
+                                         value of the CanonicalName of the root of your placement. So if your command specifies a CanonicalName of 
+                                         Foo and is placed anywhere (at any nesting level) under the File menu, its runtime canonical name would be File.Foo.
+
+                                         In localized command/menu (CTO) resources, always provide the English canonical name in this tag so macros can be language independent. 
+
+            Localized Canonical Name (optional) ** Localized programmatic name of command used in Command Window, DTE.ExecuteCommand, and Tools.Options 
+                                                   "Environment/Keyboard" page. If you provide a CanonicalName you should *always* also provide a LocalizedCanonicalName
+                                                   tag, even if they are identical text (as they would be in English since the value of the CanonicalName tag should
+                                                   always be in English). Otherwise, for LocalizedCanonicalName the shell will use your ButtonText, if that is different 
+                                                   than your CanonicalName it means that on non-English versions of Visual Studio your programmatic access name will be 
+                                                   different than it would be on the English version.-->
+    <Combos>
+      <Combo guid="guidCommandsPackageCmdSet" id="cmdidSelectAccount" idCommandList="cmdidGetAccountList" priority="0x0010" type="DropDownCombo" defaultWidth="130" >
+        <Parent guid="guidCommandsPackageCmdSet" id="AmpToolbarGroup" />
+        <CommandFlag>IconAndText</CommandFlag>
+        <CommandFlag>CommandWellOnly</CommandFlag>
+        <CommandFlag>StretchHorizontally</CommandFlag>
+        <Strings>
+          <MenuText>Select Account: </MenuText>
+          <ButtonText>Account</ButtonText>
+          <ToolTipText>Select Account</ToolTipText>
+          <CanonicalName>Select Account</CanonicalName>
+          <CommandName>Select Account</CommandName>
+        </Strings>
+      </Combo>
+      <Combo guid="guidCommandsPackageCmdSet" id="cmdidSelectSite" idCommandList="cmdidGetSiteList" priority="0x0011" type="DropDownCombo" defaultWidth="130" >
+        <Parent guid="guidCommandsPackageCmdSet" id="AmpToolbarGroup" />
+        <CommandFlag>IconAndText</CommandFlag>
+        <CommandFlag>CommandWellOnly</CommandFlag>
+        <CommandFlag>StretchHorizontally</CommandFlag>
+        <Strings>
+          <MenuText>Select Site: </MenuText>
+          <ButtonText>Site</ButtonText>
+          <ToolTipText>Select Site</ToolTipText>
+          <CanonicalName>Select Site</CanonicalName>
+          <CommandName>Select Site</CommandName>
+        </Strings>
+      </Combo>
+      <Combo guid="guidCommandsPackageCmdSet" id="cmdidSelectTarget" idCommandList="cmdidGetTargetList" priority="0x0012" type="DropDownCombo" defaultWidth="130" >
+        <Parent guid="guidCommandsPackageCmdSet" id="AmpToolbarGroup" />
+        <CommandFlag>IconAndText</CommandFlag>
+        <CommandFlag>CommandWellOnly</CommandFlag>
+        <CommandFlag>StretchHorizontally</CommandFlag>
+        <Strings>
+          <MenuText>Select Target: </MenuText>
+          <ButtonText>Target</ButtonText>
+          <ToolTipText>Select Target</ToolTipText>
+          <CanonicalName>Select Target</CanonicalName>
+          <CommandName>Select Target</CommandName>
+        </Strings>
+      </Combo>
+    </Combos>
+
+    <!--The bitmaps section is used to define the bitmaps that are used for the commands.-->
+    <Bitmaps>
+      <!--  The bitmap id is defined in a way that is a little bit different from the others:
+            the declaration starts with a guid for the bitmap strip, then there is the resource id of the
+            bitmap strip containing the bitmaps and then there are the numeric ids of the elements used
+            inside a button definition. An important aspect of this declaration is that the element id
+            must be the actual index (1-based) of the bitmap inside the bitmap strip. --> 
+      <Bitmap guid="guidImages" href="Bundle\Account\Resources\SelectAccount.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
+      <Bitmap guid="guidImages1" href="Bundle\Account\Resources\GetAccountList.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
+      <Bitmap guid="guidImages2" href="Bundle\Percolator\Resources\ExecutePercolator.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
+      <Bitmap guid="guidImages3" href="Bundle\Probe\Resources\CreateProbe.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
+      <Bitmap guid="guidImages4" href="Bundle\Probe\Resources\ExecuteProbe.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
+      <Bitmap guid="guidImages5" href="Bundle\Probe\Resources\PercolateProbeResults.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
+      <Bitmap guid="guidImages6" href="Bundle\Probe\Resources\QueryProbe.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
+      <Bitmap guid="guidImages7" href="Bundle\Probe\Resources\TestProbeFilter.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
+      <Bitmap guid="guidImages8" href="Bundle\Site\Resources\SelectSite.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
+      <Bitmap guid="guidImages9" href="Bundle\Site\Resources\GetSiteList.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
+      <Bitmap guid="guidImages10" href="Bundle\Target\Resources\SelectTarget.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
+      <Bitmap guid="guidImages11" href="Bundle\Target\Resources\GetTargetList.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
+      <Bitmap guid="guidImages12" href="Bundle\Trigger\Resources\ExecuteTrigger.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
+      <Bitmap guid="guidImages13" href="Bundle\Percolator\Resources\CreatePercolator.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
+      <Bitmap guid="guidImages14" href="Bundle\Trigger\Resources\CreateTrigger.png" usedList="bmpPic1, bmpPic2, bmpPicSearch, bmpPicX, bmpPicArrows, bmpPicStrikethrough" />
+    </Bitmaps>
+
+  </Commands>
+
+  <Symbols>
+    <!-- This is the package guid. -->
+    <GuidSymbol name="guidCommandsPackage" value="{e60e3ec3-a255-459d-842f-9c3c549eddb3}" />
+
+    <!-- This is the guid used to group the menu commands together -->
+    <GuidSymbol value="{4cb8bb12-eab9-4483-a73e-e42ce169b1bb}" name="guidCommandsPackageCmdSet">
+      <IDSymbol name="AmpTopLevelMenu" value="0x1021" />
+      <IDSymbol name="AmpTopLevelMenuGroup" value="4128" />
+      
+      <IDSymbol name="AmpToolbar" value="0x1000" />
+      <IDSymbol name="AmpToolbarGroup" value="0x1050" />
+
+      <IDSymbol name="cmdidSelectAccount" value="256" />
+      <IDSymbol name="cmdidGetAccountList" value="257" /> <!-- <IDSymbol name="cmdidGetAccountList" value="4129" />-->
+
+      <IDSymbol name="cmdidSelectSite" value="4136" />
+      <IDSymbol name="cmdidGetSiteList" value="4137" />
+
+      <IDSymbol name="cmdidSelectTarget" value="4138" />
+      <IDSymbol name="cmdidGetTargetList" value="4139" />
+      
+      <IDSymbol name="cmdidCreateProbe" value="4131" />
+      <IDSymbol name="cmdidExecuteProbe" value="4132" />
+      <IDSymbol name="cmdidPercolateProbeResults" value="4133" />
+      <IDSymbol name="cmdidQueryProbe" value="4134" />
+      <IDSymbol name="cmdidTestProbeFilter" value="4135" />
+
+      <IDSymbol name="cmdidCreatePercolator" value="4141" />
+      <IDSymbol name="cmdidExecutePercolator" value="4130" />
+      
+      <IDSymbol name="cmdidCreateTrigger" value="4142" />
+      <IDSymbol name="cmdidExecuteTrigger" value="4140" />
+      
+    </GuidSymbol>
+  
+    <GuidSymbol value="{2e56bbc1-03bb-4f8d-acb5-1b76b4877abb}" name="guidImages">
+      <IDSymbol name="bmpPic1" value="1" />
+      <IDSymbol name="bmpPic2" value="2" />
+      <IDSymbol name="bmpPicSearch" value="3" />
+      <IDSymbol name="bmpPicX" value="4" />
+      <IDSymbol name="bmpPicArrows" value="5" />
+      <IDSymbol name="bmpPicStrikethrough" value="6" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{f347fb09-1d58-4b38-b083-699b35699f77}" name="guidImages1">
+      <IDSymbol name="bmpPic1" value="1" />
+      <IDSymbol name="bmpPic2" value="2" />
+      <IDSymbol name="bmpPicSearch" value="3" />
+      <IDSymbol name="bmpPicX" value="4" />
+      <IDSymbol name="bmpPicArrows" value="5" />
+      <IDSymbol name="bmpPicStrikethrough" value="6" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{6a19f9be-a0c4-442c-b700-57dd9e5e283b}" name="guidImages2">
+      <IDSymbol name="bmpPic1" value="1" />
+      <IDSymbol name="bmpPic2" value="2" />
+      <IDSymbol name="bmpPicSearch" value="3" />
+      <IDSymbol name="bmpPicX" value="4" />
+      <IDSymbol name="bmpPicArrows" value="5" />
+      <IDSymbol name="bmpPicStrikethrough" value="6" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{788f1cc6-4b86-4916-bcc0-0bee6f576b1c}" name="guidImages3">
+      <IDSymbol name="bmpPic1" value="1" />
+      <IDSymbol name="bmpPic2" value="2" />
+      <IDSymbol name="bmpPicSearch" value="3" />
+      <IDSymbol name="bmpPicX" value="4" />
+      <IDSymbol name="bmpPicArrows" value="5" />
+      <IDSymbol name="bmpPicStrikethrough" value="6" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{0f276b68-5209-42d9-92f0-8a26fc2fca72}" name="guidImages4">
+      <IDSymbol name="bmpPic1" value="1" />
+      <IDSymbol name="bmpPic2" value="2" />
+      <IDSymbol name="bmpPicSearch" value="3" />
+      <IDSymbol name="bmpPicX" value="4" />
+      <IDSymbol name="bmpPicArrows" value="5" />
+      <IDSymbol name="bmpPicStrikethrough" value="6" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{3731755e-3052-4ea2-abb7-f338c3ca19c0}" name="guidImages5">
+      <IDSymbol name="bmpPic1" value="1" />
+      <IDSymbol name="bmpPic2" value="2" />
+      <IDSymbol name="bmpPicSearch" value="3" />
+      <IDSymbol name="bmpPicX" value="4" />
+      <IDSymbol name="bmpPicArrows" value="5" />
+      <IDSymbol name="bmpPicStrikethrough" value="6" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{cc733d65-3db3-4505-94e4-cea58ff2fcdf}" name="guidImages6">
+      <IDSymbol name="bmpPic1" value="1" />
+      <IDSymbol name="bmpPic2" value="2" />
+      <IDSymbol name="bmpPicSearch" value="3" />
+      <IDSymbol name="bmpPicX" value="4" />
+      <IDSymbol name="bmpPicArrows" value="5" />
+      <IDSymbol name="bmpPicStrikethrough" value="6" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{4a23e84f-41eb-4175-9c2b-8e3cfd3c631e}" name="guidImages7">
+      <IDSymbol name="bmpPic1" value="1" />
+      <IDSymbol name="bmpPic2" value="2" />
+      <IDSymbol name="bmpPicSearch" value="3" />
+      <IDSymbol name="bmpPicX" value="4" />
+      <IDSymbol name="bmpPicArrows" value="5" />
+      <IDSymbol name="bmpPicStrikethrough" value="6" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{6ebc63db-5147-4069-af7d-19e9b547df7e}" name="guidImages8">
+      <IDSymbol name="bmpPic1" value="1" />
+      <IDSymbol name="bmpPic2" value="2" />
+      <IDSymbol name="bmpPicSearch" value="3" />
+      <IDSymbol name="bmpPicX" value="4" />
+      <IDSymbol name="bmpPicArrows" value="5" />
+      <IDSymbol name="bmpPicStrikethrough" value="6" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{d2e25e76-c73a-4b30-925b-0853ca41cf8c}" name="guidImages9">
+      <IDSymbol name="bmpPic1" value="1" />
+      <IDSymbol name="bmpPic2" value="2" />
+      <IDSymbol name="bmpPicSearch" value="3" />
+      <IDSymbol name="bmpPicX" value="4" />
+      <IDSymbol name="bmpPicArrows" value="5" />
+      <IDSymbol name="bmpPicStrikethrough" value="6" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{5de3892c-6b74-4595-a195-a20ba25d3c01}" name="guidImages10">
+      <IDSymbol name="bmpPic1" value="1" />
+      <IDSymbol name="bmpPic2" value="2" />
+      <IDSymbol name="bmpPicSearch" value="3" />
+      <IDSymbol name="bmpPicX" value="4" />
+      <IDSymbol name="bmpPicArrows" value="5" />
+      <IDSymbol name="bmpPicStrikethrough" value="6" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{755e69a9-c54d-4b94-9777-aa9e0c04cdd1}" name="guidImages11">
+      <IDSymbol name="bmpPic1" value="1" />
+      <IDSymbol name="bmpPic2" value="2" />
+      <IDSymbol name="bmpPicSearch" value="3" />
+      <IDSymbol name="bmpPicX" value="4" />
+      <IDSymbol name="bmpPicArrows" value="5" />
+      <IDSymbol name="bmpPicStrikethrough" value="6" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{c0142d5e-79aa-470e-8390-fd2622b9ee24}" name="guidImages12">
+      <IDSymbol name="bmpPic1" value="1" />
+      <IDSymbol name="bmpPic2" value="2" />
+      <IDSymbol name="bmpPicSearch" value="3" />
+      <IDSymbol name="bmpPicX" value="4" />
+      <IDSymbol name="bmpPicArrows" value="5" />
+      <IDSymbol name="bmpPicStrikethrough" value="6" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{db4ae55d-d880-455d-9fe7-9650d0e8a8fb}" name="guidImages13">
+      <IDSymbol name="bmpPic1" value="1" />
+      <IDSymbol name="bmpPic2" value="2" />
+      <IDSymbol name="bmpPicSearch" value="3" />
+      <IDSymbol name="bmpPicX" value="4" />
+      <IDSymbol name="bmpPicArrows" value="5" />
+      <IDSymbol name="bmpPicStrikethrough" value="6" />
+    </GuidSymbol>
+  
+    <GuidSymbol value="{158a1473-6623-4b12-a604-e19b8927d9b2}" name="guidImages14">
+      <IDSymbol name="bmpPic1" value="1" />
+      <IDSymbol name="bmpPic2" value="2" />
+      <IDSymbol name="bmpPicSearch" value="3" />
+      <IDSymbol name="bmpPicX" value="4" />
+      <IDSymbol name="bmpPicArrows" value="5" />
+      <IDSymbol name="bmpPicStrikethrough" value="6" />
+    </GuidSymbol>
+  </Symbols>
+</CommandTable>
